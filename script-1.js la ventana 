@@ -1,0 +1,59 @@
+// ====== DATOS DEL MENÚ (editá aquí precios y productos) ======
+// price: número en colones, o null => "[precio por confirmar]"
+const MENU = [
+  {id:"rapidas", name:"Clásicos", items:[
+    {n:"Hamburguesa", o:[["Precio", null]], tbc:"Etiquetas amarillas ilegibles en la foto"},
+    {n:"Doraditas", o:[["Precio", 1700]]},
+    {n:"Papas", o:[["Precio", 1800]]},
+    {n:"Salchipapas", o:[["Precio", 2000]]},
+    {n:"Torta de carne", o:[["Precio", 1700]]},
+    {n:"Palitos de queso", o:[["Precio", 2000]]}
+  ]},
+  {id:"carne-pollo", name:"Carne o pollo", sub:"Elegí carne o pollo en estos productos.", items:[
+    {n:"Chalupa", o:[["Sola",2100],["Mixta",2300],["Con papas",2600]]},
+    {n:"Papanachos", o:[["Precio",3200],["Mixtos",3500]]},
+    {n:"Raviol", o:[["Precio",2000]]},
+    {n:"Burritos", o:[["Precio",2100],["Mixto",2300],["Con papas",2600]]},
+    {n:"Nachos", o:[["Carne",null],["Pollo",3100],["Mixtos",3300]], tbc:"Nachos: confirmar cuál precio corresponde a cada opción"},
+    {n:"Supertaco", o:[["Precio",2100],["Con papas",2600]]}
+  ]}
+];
+const fmt = n => "₡" + n.toLocaleString("es-CR");
+
+const root = document.getElementById("menu-root");
+const tabs = document.getElementById("tabs");
+MENU.forEach(c => {
+  const t = document.createElement("a");
+  t.href = "#" + c.id; t.textContent = c.name; tabs.appendChild(t);
+  const s = document.createElement("div");
+  s.className = "cat"; s.id = c.id;
+  s.innerHTML = `<h3>${c.name}</h3>` + (c.sub ? `<p class="sub">${c.sub}</p>` : "") + `<div class="grid"></div>`;
+  const g = s.querySelector(".grid");
+  c.items.forEach(i => {
+    const d = document.createElement("article");
+    d.className = "card";
+    d.innerHTML = `<h4>${i.n}</h4>` + i.o.map(([l,p]) =>
+      `<div class="opt"><span>${l}</span>${p===null?'<b class="tbc">[precio por confirmar]</b>':`<b>${fmt(p)}</b>`}</div>`).join("");
+    g.appendChild(d);
+  });
+  root.appendChild(s);
+});
+
+// Menú hamburguesa
+const burger = document.getElementById("burger"), links = document.getElementById("links");
+const setMenu = open => {
+  links.classList.toggle("open", open); burger.classList.toggle("open", open);
+  burger.setAttribute("aria-expanded", open);
+  burger.setAttribute("aria-label", open ? "Cerrar menú de navegación" : "Abrir menú de navegación");
+};
+burger.addEventListener("click", () => setMenu(!links.classList.contains("open")));
+links.querySelectorAll("a").forEach(a => a.addEventListener("click", () => setMenu(false)));
+document.addEventListener("keydown", e => { if (e.key === "Escape") setMenu(false); });
+
+// Pestaña activa al hacer scroll
+const tabLinks = [...tabs.querySelectorAll("a")];
+const io = new IntersectionObserver(es => es.forEach(e => {
+  if (e.isIntersecting) tabLinks.forEach(a => a.classList.toggle("on", a.getAttribute("href") === "#" + e.target.id));
+}), {rootMargin:"-30% 0px -60% 0px"});
+document.querySelectorAll(".cat").forEach(c => io.observe(c));
+document.getElementById("year").textContent = new Date().getFullYear();

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>El Secreto La Ventanita | Comida rápida</title>
+<meta name="description" content="Menú completo de El Secreto La Ventanita: hamburguesas, chalupas, nachos, burritos y más. Tel. 8726-8448.">
+<link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="nav" id="nav">
+  <a class="brand" href="#inicio">El Secreto <small>La Ventanita</small></a>
+  <button class="burger" id="burger" aria-label="Abrir menú de navegación" aria-expanded="false" aria-controls="links"><span></span><span></span><span></span></button>
+  <nav class="links" id="links">
+    <a href="#inicio">Inicio</a>
+    <a href="#menu">Menú</a>
+    <a href="#contacto">Contacto</a>
+    <a class="pill" href="https://wa.me/50687268448" target="_blank" rel="noopener">WhatsApp</a>
+  </nav>
+</header>
+
+<main>
+<section class="hero" id="inicio">
+  <div class="hero-in">
+    <p class="kicker">Comida rápida por la ventanita</p>
+    <h1>El Secreto<br><span>La Ventanita</span></h1>
+    <p class="lead">Hamburguesas, chalupas, nachos, burritos y mucho más. Pedilo en combo por ₡1.500 más.</p>
+    <div class="btns">
+      <a class="btn primary" href="#menu">Ver menú</a>
+      <a class="btn dark" href="#contacto">Contactar</a>
+      <a class="btn wa" href="https://wa.me/50687268448" target="_blank" rel="noopener">WhatsApp</a>
+    </div>
+  </div>
+  <div class="sun" aria-hidden="true">🍔</div>
+</section>
+
+<section class="sec" id="menu">
+  <h2>Menú completo</h2>
+  <p class="note">Precios en colones (₡). Los precios actualizados de las etiquetas amarillas reemplazan a los impresos en el cartel.</p>
+  <div class="tabs" id="tabs"></div>
+  <div id="menu-root"></div>
+  <p class="combo">🍟 Pedilo en combo por ₡1.500 más...</p>
+</section>
+
+<section class="sec contact" id="contacto">
+  <h2>Contacto</h2>
+  <div class="cards2">
+    <div class="box">
+      <h3>Teléfono</h3>
+      <p class="tel">8726-8448</p>
+      <div class="btns">
+        <a class="btn primary" href="tel:+50687268448">Llamar</a>
+        <a class="btn wa" href="https://wa.me/50687268448" target="_blank" rel="noopener">WhatsApp</a>
+      </div>
+    </div>
+    <div class="box">
+      <h3>Horarios</h3>
+      <ul class="hours">
+        <li><span>Miércoles, jueves y viernes</span><b>5:00 PM – 9:00 PM</b></li>
+        <li><span>Sábado y domingo</span><b>1:00 PM – 9:00 PM</b></li>
+      </ul>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <p>© <span id="year"></span> El Secreto La Ventanita · Tel. 8726-8448</p>
+  <a href="#inicio">Volver arriba</a>
+</footer>
+
+<a class="fab" href="https://wa.me/50687268448" target="_blank" rel="noopener" aria-label="Escribir por WhatsApp">WhatsApp</a>
+<script src="script.js"></script>
+</body>
+</html>
